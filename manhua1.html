@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>漫画详情</title>
+    <link rel="stylesheet" href="css/style.css">
+<style>
+  #slider {
+    position: relative;
+    width: 1000px;
+    height: 800px;
+    margin: auto;
+  }
+  .slide {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+#myModal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+ 
+  .modal-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+ 
+  /* Fade in Modal */
+  .modal-fade-in {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+  }
+ 
+  /* Fade out Modal */
+  .modal-fade-out {
+    animation-name: fadeOut;
+    animation-duration: 0.5s;
+  }
+ 
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+ 
+  @keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+
+</style>
+</head>
+
+<body>
+
+
+    <div id="comic-info">
+        <h1>漫画名称</h1>
+        <p>简介：这是一部非常精彩的漫画...</p>
+        <img src="1888.jpg" alt="漫画封面">
+<p></p>
+<button onclick="nextSlide()" style="font-weight: bold;  width: 1px solid #FF5151;width: 200px; height: 100px; background-color: #ECF5FF; color: black;"  >点击阅读（下一页按钮也是这个 </button>
+
+<button id="myButton"  style="width: 200px; height: 100px; background-color: #4CAF50; color: white;" >打赏支持作者3r </button>
+ 
+<div id="myModal" class="modal-content">
+  <img src="pay122.jpg" alt="图片" class="modal-fade-in">
+</div>
+ 
+<script>
+document.getElementById('myButton').onclick = function() {
+  // 获取模态框元素
+  var modal = document.getElementById('myModal');
+ 
+  // 显示模态框
+  modal.classList.add('modal-fade-in');
+  modal.style.display = 'block';
+ 
+  // 添加关闭模态框的事件监听
+  modal.addEventListener('click', function(event) {
+    if (event.target === modal) {
+      // 隐藏模态框
+      modal.classList.add('modal-fade-out');
+      setTimeout(function() {
+        modal.style.display = 'none';
+      }, 500); // 等待动画结束后移除模态框
+    }
+  });
+};
+</script>
+
+
+<div id="slider">
+  <img class="slide active" src="1309.jpg">
+  <img class="slide" src="1310.jpg">
+  <img class="slide" src="1311.jpg">
+</div>
+
+
+        <ul>
+            <li><a href="#chapter1">第一章</a></li>
+            <li><a href="#chapter2">第二章</a></li>
+            <!-- 更多章节 -->
+        </ul>
+    </div>
+    <!-- 章节内容 -->
+    <footer>
+        <p>版权所有 &copy; 2024 漫画网站</p>
+    </footer>
+<script>
+  let currentIndex = 0;
+  const slides = document.querySelectorAll('.slide');
+  const nextSlide = () => {
+    slides[currentIndex].style.display = 'none';
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].style.display = 'block';
+  };
+</script>
+</body>
+</html>
